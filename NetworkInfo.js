@@ -11,8 +11,8 @@ var NetworkInfo = {
     RNNetworkInfo.getIPAddress(ip);
   },
 
-  getNetworkIPAddress(ip) {
-    RNNetworkInfo.getNetworkIPAddress(ip);
+  getRouterIPAddress(ip) {
+    RNNetworkInfo.getRouterIPAddress(ip);
   }
 };
 
