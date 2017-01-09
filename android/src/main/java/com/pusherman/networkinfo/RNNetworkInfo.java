@@ -83,7 +83,7 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void getRouterIPAddress(final Callback callback) {
-    final WifiManager manager = (WifiManager) super.getSystemService(WIFI_SERVICE);
+    final WifiManager manager = Context.getSystemService(Context.WIFI_SERVICE);
 
     DhcpInfo dhcp = manager.getDhcpInfo();
     int ip = dhcp.serverAddress;
