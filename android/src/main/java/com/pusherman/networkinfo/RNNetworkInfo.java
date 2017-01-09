@@ -85,7 +85,7 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
   public void getRouterIPAddress(final Callback callback) {
 
     DhcpInfo dhcp = wifi.getDhcpInfo();
-    int ip = dhcp.ipAddress;
+    int ip = dhcp.gateway;
 
     // Convert little-endian to big-endian if needed.
     if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
