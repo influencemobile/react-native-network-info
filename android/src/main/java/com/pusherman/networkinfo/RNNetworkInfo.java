@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
+import android.net.DhcpInfo;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.NativeModule;
@@ -37,13 +38,13 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getSSID(final Callback callback) {
     WifiInfo info = wifi.getConnectionInfo();
-    
+
     // This value should be wrapped in double quotes, so we need to unwrap it.
     String ssid = info.getSSID();
     if (ssid.startsWith("\"") && ssid.endsWith("\"")) {
       ssid = ssid.substring(1, ssid.length() - 1);
     }
-    
+
     callback.invoke(ssid);
   }
 
@@ -69,14 +70,43 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
 
     String ipAddressString;
     try {
-        // `getByAddress()` wants network byte-order, aka big-endian. 
+        // `getByAddress()` wants network byte-order, aka big-endian.
         // Good thing we planned ahead!
         ipAddressString = InetAddress.getByAddress(ipByteArray).getHostAddress();
     } catch (UnknownHostException ex) {
         Log.e(TAG, "Unable to determine IP address.");
         ipAddressString = null;
     }
-    
+
+    callback.invoke(ipAddressString);
+  }
+
+  @ReactMethod
+  public void getRouterIPAddress(final Callback callback) {
+    final WifiManager manager = (WifiManager) super.getSystemService(WIFI_SERVICE);
+
+    DhcpInfo dhcp = manager.getDhcpInfo();
+    int ip = dhcp.getIpAddress();
+
+    // Convert little-endian to big-endian if needed.
+    if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
+        ip = Integer.reverseBytes(ip);
+    }
+
+    // Now that the value is guaranteed to be big-endian, we can convert it to
+    // an array whose first element is the high byte.
+    byte[] ipByteArray = BigInteger.valueOf(ip).toByteArray();
+
+    String ipAddressString;
+    try {
+        // `getByAddress()` wants network byte-order, aka big-endian.
+        // Good thing we planned ahead!
+        ipAddressString = InetAddress.getByAddress(ipByteArray).getHostAddress();
+    } catch (UnknownHostException ex) {
+        Log.e(TAG, "Unable to determine IP address.");
+        ipAddressString = null;
+    }
+
     callback.invoke(ipAddressString);
   }
 
