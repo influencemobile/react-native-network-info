@@ -139,7 +139,7 @@ RCT_EXPORT_METHOD(getRouterIPAddress:(RCTResponseSenderBlock)callback)
 {
     struct in_addr gatewayaddr;
     int r = getdefaultgateway(&(gatewayaddr.s_addr));
-    NSString routerIPAddress = @"error";
+    NSString *routerIPAddress = @"error";
     if (r >= 0) {
         routerIPAddress = [NSString stringWithFormat: @"%s",inet_ntoa(gatewayaddr)];
     }
