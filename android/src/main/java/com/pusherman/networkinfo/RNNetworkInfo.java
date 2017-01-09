@@ -86,7 +86,7 @@ public class RNNetworkInfo extends ReactContextBaseJavaModule {
     final WifiManager manager = (WifiManager) super.getSystemService(WIFI_SERVICE);
 
     DhcpInfo dhcp = manager.getDhcpInfo();
-    int ip = dhcp.getIpAddress();
+    int ip = dhcp.serverAddress;
 
     // Convert little-endian to big-endian if needed.
     if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
