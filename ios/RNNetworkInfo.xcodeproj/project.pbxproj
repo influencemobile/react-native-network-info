@@ -28,7 +28,7 @@
 		045BEB3C1B52EA6A0013C1B9 /* libRNNetworkInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNNetworkInfo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		045BEB3F1B52EA6A0013C1B9 /* RNNetworkInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNNetworkInfo.h; sourceTree = "<group>"; };
 		045BEB411B52EA6A0013C1B9 /* RNNetworkInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNNetworkInfo.m; sourceTree = "<group>"; };
-		AAEC27D81E2459240027DB9D /* router.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = router.h; sourceTree = "<group>"; };
+		AAEC27D81E2459240027DB9D /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		045BEB331B52EA6A0013C1B9 = {
 			isa = PBXGroup;
 			children = (
-				AAEC27D81E2459240027DB9D /* router.h */,
+				AAEC27D81E2459240027DB9D /* route.h */,
 				045BEB3F1B52EA6A0013C1B9 /* RNNetworkInfo.h */,
 				045BEB411B52EA6A0013C1B9 /* RNNetworkInfo.m */,
 				045BEB3D1B52EA6A0013C1B9 /* Products */,
